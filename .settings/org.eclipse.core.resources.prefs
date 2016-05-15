@@ -1,2 +1,6 @@
 eclipse.preferences.version=1
 encoding//core/migrations/0002_auto_20160508_0523.py=utf-8
+encoding//core/migrations/0003_auto_20160509_0433.py=utf-8
+encoding//core/migrations/0004_account_uuid.py=utf-8
+encoding//core/migrations/0005_auto_20160509_2102.py=utf-8
+encoding//core/migrations/0006_auto_20160512_0516.py=utf-8
