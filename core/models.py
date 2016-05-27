@@ -38,9 +38,9 @@ class Cause(db_models.Model):
         return self.name
 
 class Move(db_models.Model):
-    typee = db_models.IntegerField(choices=(
-        (constants.MoveType.DEPOSIT.value, 'DEPOSIT'),
-        (constants.MoveType.EXTRACTION.value, 'EXTRACTION'), ))
+    typee = db_models.CharField(max_length=256, choices=(
+        (constants.MoveType.DEPOSIT.name, 'DEPOSIT'),
+        (constants.MoveType.EXTRACTION.name, 'EXTRACTION'), ))
     description = db_models.CharField(max_length=256, blank=True)
     date = db_models.DateTimeField()
     cause = db_models.ForeignKey(Cause)
@@ -49,9 +49,9 @@ class Move(db_models.Model):
     
     def __str__(self):
         return '{typee} of ${amount} {direction} {saving_box} due to {cause} at {date}'.format(
-            typee=constants.MoveType(self.typee).name,
+            typee=self.typee,
             amount=self.amount,
-            direction=constants.MoveType(self.typee) == constants.MoveType.DEPOSIT and 'in' or 'from',
+            direction=constants.MoveType[self.typee] == constants.MoveType.DEPOSIT and 'in' or 'from',
             saving_box=self.saving_box,
             cause=self.cause,
             date=self.date,
