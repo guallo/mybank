@@ -1,0 +1,28 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        
+        <link rel="stylesheet" type="text/css" href="{% static 'presentation/base.css' %}"/>
+        
+        <style type="text/css">
+            {% block css_style %}
+            {% endblock %}
+        </style>
+    </head>
+    <body>
+        <ul id="main_menu">
+            <li id="dashboard"><a href="/dashboard">Dashboard</a></li>
+            <li id="profile"><a href="/profile">Profile</a></li>
+            <li id="accounts"><a href="/accounts">Accounts</a></li>
+            <li id="saving_boxes"><a href="/saving_boxes">Saving boxes</a></li>
+            <li id="moves"><a href="/moves">Moves</a></li>
+            <li id="logout"><a href="/logout">Log out <b>{{ user.username }}</b></a></li>
+        </ul>
+        
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>

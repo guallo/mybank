@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login</title>
+        
+        <style type="text/css">
+            p.error-msg {
+                color: red;
+            }
+            
+            form#auth_form table tbody tr:last-child td {
+                text-align: right;
+            }
+        </style>
+    </head>
+    <body>
+        {% if form.errors %}
+            <p class="error-msg">Invalid credentials. Please try again.</p>
+        {% endif %}
+    
+        <form id="auth_form" method="post" action="{% url 'login-view' %}">
+            {% csrf_token %}
+            
+            <table>
+                <tbody>
+                    <tr>
+                        <td>{{ form.username.label_tag }}</td><td>{{ form.username }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ form.password.label_tag }}</td><td>{{ form.password }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><input type="submit" value="Log in"></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            {% if next %}
+                <input type="hidden" name="next" value="{{ next }}"/>
+            {% else %}
+                <input type="hidden" name="next" value="{% url 'dashboard-view' %}"/>
+            {% endif %}
+        </form>
+    </body>
+</html>

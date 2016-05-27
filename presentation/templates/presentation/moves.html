@@ -1,0 +1,36 @@
+{% extends 'presentation/base.html' %}
+
+{% block title %}Moves{% endblock %}
+
+{% block css_style %}
+ul#main_menu li#moves a {
+    background: orange;
+    padding-top: 20px;
+}
+{% endblock %}
+
+{% block content %}
+    <ul>
+        {% for account in accounts %}
+            <li>
+                <span>{{ account.uuid }}</span>
+                <ul>
+                    {% for saving_box in saving_boxes %}
+                        {% if saving_box.account == account.url %}
+                            <li>
+                                <span>{{ saving_box.currency_type_name }}</span>
+                                <ul>
+                                    {% for move in moves %}
+                                        {% if move.saving_box == saving_box.url %}
+                                            <li>{{ move.typee }} | {{ move.amount }} | {{ move.cause }} | {{ move.date }} | {{ move.description }}</li>
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
