@@ -10,4 +10,20 @@ ul#main_menu li#profile a {
 {% endblock %}
 
 {% block content %}
+<table>
+    <tbody>
+        <tr>
+            <td><label>Username</label></td><td><label>{{ user.username }}</label></td>
+        </tr>
+        <tr>
+            <td><label>First name</label></td><td><label>{{ user.first_name }}</label></td>
+        </tr>
+        <tr>
+            <td><label>Last name</label></td><td><label>{{ user.last_name }}</label></td>
+        </tr>
+        <tr>
+            <td><label>Email</label></td><td><label>{{ user.email }}</label></td>
+        </tr>
+    </tbody>
+</table>
 {% endblock %}

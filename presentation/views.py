@@ -13,7 +13,10 @@ def dashboard_view(request):
 
 @login_required(login_url='login-view')
 def profile_view(request):
-    return render(request, 'presentation/profile.html')
+    result = requests.get('http://127.0.0.1:8000/core/users/', cookies=request.COOKIES)
+    users = result.json()
+    
+    return render(request, 'presentation/profile.html', {'user': users[0]})
 
 
 @login_required(login_url='login-view')
