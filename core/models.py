@@ -20,9 +20,19 @@ class CurrencyType(db_models.Model):
     def __str__(self):
         return self.name
 
+# TODO: Validate that two saving boxes that belongs from the same account 
+# can not have the same currency_type.
 class SavingBox(db_models.Model):
     currency_type = related.ForeignKey(CurrencyType)
     account = related.ForeignKey(Account)
+    
+    @property
+    def balance(self):
+        moves = Move.objects.filter(saving_box=self)
+        balance = sum(map(lambda move: 
+            move.amount if constants.MoveType[move.typee] == constants.MoveType.DEPOSIT else -move.amount, 
+            moves))
+        return balance
     
     def __str__(self):
         return '{currency_type} saving box of {account}'.format(
