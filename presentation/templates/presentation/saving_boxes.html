@@ -12,7 +12,7 @@ ul#main_menu li#saving_boxes a {
 {% block content %}
     <ul>
         {% for saving_box in saving_boxes %}
-            <li>{{ saving_box.currency_type_name }}</li>
+            <li>{{ saving_box.currency_type_name }}: {{ saving_box.balance }}</li>
         {% endfor %}
     </ul>
 {% endblock %}
