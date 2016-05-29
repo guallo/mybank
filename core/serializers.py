@@ -53,7 +53,7 @@ class SavingBoxSerializer(rest_serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.SavingBox
         fields = ('url', 'currency_type', 'currency_type_name', 'account', 
-                  'move_set', )
+                  'move_set', 'balance', )
 
 
 class CauseSerializer(rest_serializers.HyperlinkedModelSerializer):
